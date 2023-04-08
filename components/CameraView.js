@@ -9,10 +9,11 @@ function CameraView(props) {
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
 
-  useEffect(() =>{
+  useEffect(() => {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+      const mediaLibraryPermission =
+        await MediaLibrary.requestPermissionsAsync();
       setHasCameraPermission(cameraPermission.status === "granted");
       setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted");
     })();
@@ -20,23 +21,29 @@ function CameraView(props) {
 
   if (hasCameraPermission === undefined) {
     return <Text>Requesting permissions...</Text>;
-  }
-  else if(!hasCameraPermission) {
-    return <Text>Permission for camera not granted. Please change this in settings.</Text>
+  } else if (!hasCameraPermission) {
+    return (
+      <Text>
+        Permission for camera not granted. Please change this in settings.
+      </Text>
+    );
   }
 
   if (hasMediaLibraryPermission === undefined) {
     return <Text>Requesting permissions...</Text>;
-  }
-  else if(!hasMediaLibraryPermission) {
-    return <Text>Permission for media not granted. Please change this in settings.</Text>
+  } else if (!hasMediaLibraryPermission) {
+    return (
+      <Text>
+        Permission for media not granted. Please change this in settings.
+      </Text>
+    );
   }
 
   async function takePic() {
     let options = {
       quality: 1,
       bas64: true,
-      exif: false
+      exif: false,
     };
 
     let newPhoto = await cameraRef.current.takePictureAsync(options);
@@ -53,7 +60,11 @@ function CameraView(props) {
   return (
     <Modal visible={props.visible} animationType="slide">
       <Camera style={styles.cameraView} ref={cameraRef}>
-        <Pressable android_ripple={{color: 'white'}} style={styles.btnOut} onPress={takePic}>
+        <Pressable
+          android_ripple={{ color: "white" }}
+          style={styles.btnOut}
+          onPress={takePic}
+        >
           <View style={styles.btnIn}></View>
         </Pressable>
       </Camera>
@@ -66,14 +77,14 @@ export default CameraView;
 const styles = StyleSheet.create({
   cameraView: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
 
   btnOut: {
     padding: 7,
     borderWidth: 4,
-    borderColor: 'white',
+    borderColor: "white",
     marginBottom: 30,
     borderRadius: 30,
   },
@@ -82,6 +93,6 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 30,
-    backgroundColor: 'white'
-  }
+    backgroundColor: "white",
+  },
 });

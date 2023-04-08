@@ -2,7 +2,11 @@ import { Image, Pressable, StyleSheet } from "react-native";
 
 function ImageButton(props) {
   return (
-    <Pressable onPress={props.onShowCamera} android_ripple={{ color: "#f8f1e9" }} style={styles.btn}>
+    <Pressable
+      onPress={props.onShowCamera}
+      android_ripple={{ color: "#f8f1e9" }}
+      style={styles.btn}
+    >
       <Image
         style={styles.image}
         source={require("../assets/images/camera.png")}

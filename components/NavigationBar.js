@@ -4,19 +4,22 @@ import ImageButton from "./ImageButton";
 import { useState } from "react";
 
 function NavigationBar(props) {
-    const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
-    function showCameraViewHandler() {
-        setModalIsVisible(true);
-    }
+  function showCameraViewHandler() {
+    setModalIsVisible(true);
+  }
 
-    function closeCameraViewHandler() {
-        setModalIsVisible(false);
-    }
+  function closeCameraViewHandler() {
+    setModalIsVisible(false);
+  }
 
   return (
     <View style={styles.navigationBar}>
-        <CameraView visible={modalIsVisible} onCloseCamera={closeCameraViewHandler} />
+      <CameraView
+        visible={modalIsVisible}
+        onCloseCamera={closeCameraViewHandler}
+      />
       <ImageButton onShowCamera={showCameraViewHandler} />
     </View>
   );
