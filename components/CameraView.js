@@ -58,7 +58,11 @@ function CameraView(props) {
   }
 
   return (
-    <Modal visible={props.visible} animationType="slide">
+    <Modal
+      onRequestClose={props.onCloseCamera}
+      visible={props.visible}
+      animationType="slide"
+    >
       <Camera style={styles.cameraView} ref={cameraRef}>
         <Pressable
           android_ripple={{ color: "white" }}
