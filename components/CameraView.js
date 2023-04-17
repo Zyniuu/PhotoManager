@@ -42,8 +42,7 @@ function CameraView(props) {
   async function takePic() {
     let options = {
       quality: 1,
-      bas64: true,
-      exif: false,
+      skipProcessing: true
     };
 
     let newPhoto = await cameraRef.current.takePictureAsync(options);
@@ -52,6 +51,7 @@ function CameraView(props) {
 
   if (photo) {
     MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
+      props.loadPictures();
       setPhoto(undefined);
       props.onCloseCamera();
     });

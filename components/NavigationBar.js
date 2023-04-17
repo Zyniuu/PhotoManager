@@ -19,6 +19,7 @@ function NavigationBar(props) {
       <CameraView
         visible={modalIsVisible}
         onCloseCamera={closeCameraViewHandler}
+        loadPictures={props.loadPictures}
       />
       <ImageButton onShowCamera={showCameraViewHandler} />
     </View>
